@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+	  <meta charset="UTF-8">
+	  <title>Rahul Kumar</title>
+		<link rel="stylesheet" href="style.css">  
+	</head>
+<body>
+
+<div id="body">
+	<h1>NUMBER GAME</h1>
+	  <p id="myLoad"></p>
+	  <div id="wrapper">
+	  <div id ="demo1" class="box"></div>
+	  <div id ="demo2" class="box"></div>
+	  <div id ="demo3" class="box"></div>
+		<i class="justify"></i>
+	  </div><br>
+	<span id="demo5"></span><br>
+	<section>
+		<span id ="demo4"></span>
+		<button id="js-trigger-overlay" type="button" onclick="getRndInteger(0,10)">Click Me</button>
+	</section>
+
+<script>
+
+			var  INR= 1000;
+			document.getElementById('myLoad').innerHTML = "You have " + INR + " INR";
+		function getRndInteger(min, max) {
+				var d1 = Math.floor(Math.random() * (max - min)) + min;
+				var d2 = Math.floor(Math.random() * (max - min)) + min;
+				var d3 = Math.floor(Math.random() * (max - min)) + min;
+				
+				document.getElementById('demo1').innerHTML = d1;
+				document.getElementById('demo2').innerHTML = d2;
+				document.getElementById('demo3').innerHTML = d3 ;
+			
+			if(INR<=100){
+				document.getElementById('js-trigger-overlay').innerHTML = "Game Over";
+				document.getElementById('js-trigger-overlay').disabled=true;
+			}
+			else if((((d1%2)==0) && ((d2%2)==0) && ((d3%2)==0))&& ((d1!=d2) || (d1!=d3))){
+				INR+=200;
+				document.getElementById('myLoad').innerHTML = "You have " + (INR) + " INR";
+				document.getElementById('demo5').innerHTML = "You have won 300 INR as all the numbers are even";
+			}
+			else if((((d1%2)!=0) && ((d2%2)!=0) && ((d3%2)!=0))&& ((d1!=d2) || (d1!=d3))){
+				INR+=200;
+				document.getElementById('myLoad').innerHTML = "You have " + (INR) + " INR";
+				document.getElementById('demo5').innerHTML = "You have won 300 INR as all the numbers are odd";
+			}
+			else if((d1==d2)&& (d1==d3)){
+				INR+=1000;
+				document.getElementById('myLoad').innerHTML = "You have " + (INR) + " INR";
+				document.getElementById('demo5').innerHTML = "You have won 1000 INR as all the numbers are same";
+			}
+			else if((((Math.abs(d1-d2)==1)&&(Math.abs(d2-d3)==1))||((Math.abs(d1-d3)==1)&&(Math.abs(d2-d3)==1))||((Math.abs(d1-d2)==1)&&(Math.abs(d1-d3)==1))) && ((d1!=d2) && (d1!=d3) && (d2!=d3)))
+			{
+				INR+=600;
+				document.getElementById('myLoad').innerHTML = "You have " + (INR) + " INR";
+				document.getElementById('demo5').innerHTML = "You have won 800 INR as the numbers are in sequence";
+			}
+			else {
+				INR-=100;
+				document.getElementById('myLoad').innerHTML = "You have " + (INR) + " INR";
+				document.getElementById('demo5').innerHTML = "You were not lucky this time";
+			}
+		}
+
+</script>
+</div>
+</body>
+</html>
